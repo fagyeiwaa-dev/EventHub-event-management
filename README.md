@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #  EventHub – Event Management & Ticketing Platform
 
 ##  Project Overview
