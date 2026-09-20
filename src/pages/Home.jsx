@@ -1,10 +1,4 @@
 import { Link } from "react-router-dom";
-<Link
-  to="/events"
-  className="w-fit rounded-lg border border-blue-600 px-5 py-2.5 font-semibold text-blue-600 transition hover:bg-blue-600 hover:text-white"
->
-  View All Events
-</Link>
 
 function Home() {
   return (
@@ -28,16 +22,18 @@ function Home() {
           </p>
 
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <Link to="/events">
-              <button className="rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition hover:bg-gray-100">
-                Explore Events
-              </button>
+            <Link
+              to="/events"
+              className="rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition hover:bg-gray-100"
+            >
+              Explore Events
             </Link>
 
-            <Link to="/create-event">
-              <button className="rounded-lg border border-white px-6 py-3 font-semibold text-white transition hover:bg-blue-700">
-                Create an Event
-              </button>
+            <Link
+              to="/create-event"
+              className="rounded-lg border border-white px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+            >
+              Create an Event
             </Link>
           </div>
         </div>
@@ -64,7 +60,6 @@ function Home() {
 
           {/* Feature Cards */}
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {/* Feature 1 */}
             <div className="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-2xl">
                 🎟️
@@ -80,7 +75,6 @@ function Home() {
               </p>
             </div>
 
-            {/* Feature 2 */}
             <div className="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-2xl">
                 🔎
@@ -96,7 +90,6 @@ function Home() {
               </p>
             </div>
 
-            {/* Feature 3 */}
             <div className="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-2xl">
                 ❤️
@@ -112,7 +105,6 @@ function Home() {
               </p>
             </div>
 
-            {/* Feature 4 */}
             <div className="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-2xl">
                 🔔
@@ -134,7 +126,6 @@ function Home() {
       {/* Featured Events */}
       <section className="bg-white px-6 py-20">
         <div className="mx-auto max-w-7xl">
-          {/* Section Heading */}
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
@@ -150,16 +141,17 @@ function Home() {
               </p>
             </div>
 
-            <Link to="/events">
-              <button className="w-fit rounded-lg border border-blue-600 px-5 py-2.5 font-semibold text-blue-600 transition hover:bg-blue-600 hover:text-white">
-                View All Events
-              </button>
+            <Link
+              to="/events"
+              className="w-fit rounded-lg border border-blue-600 px-5 py-2.5 font-semibold text-blue-600 transition hover:bg-blue-600 hover:text-white"
+            >
+              View All Events
             </Link>
           </div>
 
           {/* Event Cards */}
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* Event 1 - Tech4Girls */}
+            {/* Event 1 */}
             <div className="overflow-hidden rounded-xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
               <img
                 src="https://images.unsplash.com/photo-1540575467063-178a50c2df87"
@@ -186,13 +178,16 @@ function Home() {
                   <p>📍 Accra, Ghana</p>
                 </div>
 
-                <button className="mt-6 w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition hover:bg-blue-700">
+                <Link
+                  to="/events/1"
+                  className="mt-6 block w-full rounded-lg bg-blue-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-blue-700"
+                >
                   View Event
-                </button>
+                </Link>
               </div>
             </div>
 
-            {/* Event 2 - Accra Music Festival */}
+            {/* Event 2 */}
             <div className="overflow-hidden rounded-xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
               <img
                 src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a"
@@ -219,13 +214,16 @@ function Home() {
                   <p>📍 Accra, Ghana</p>
                 </div>
 
-                <button className="mt-6 w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition hover:bg-blue-700">
+                <Link
+                  to="/events/2"
+                  className="mt-6 block w-full rounded-lg bg-blue-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-blue-700"
+                >
                   View Event
-                </button>
+                </Link>
               </div>
             </div>
 
-            {/* Event 3 - Business Networking */}
+            {/* Event 3 */}
             <div className="overflow-hidden rounded-xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
               <img
                 src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4"
@@ -252,9 +250,12 @@ function Home() {
                   <p>📍 Accra, Ghana</p>
                 </div>
 
-                <button className="mt-6 w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition hover:bg-blue-700">
+                <Link
+                  to="/events/3"
+                  className="mt-6 block w-full rounded-lg bg-blue-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-blue-700"
+                >
                   View Event
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -278,13 +279,19 @@ function Home() {
           </p>
 
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <button className="rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition hover:bg-gray-100">
+            <Link
+              to="/events"
+              className="rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition hover:bg-gray-100"
+            >
               Explore Events
-            </button>
+            </Link>
 
-            <button className="rounded-lg border border-white px-6 py-3 font-semibold text-white transition hover:bg-blue-700">
+            <Link
+              to="/create-event"
+              className="rounded-lg border border-white px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+            >
               Become an Organizer
-            </button>
+            </Link>
           </div>
         </div>
       </section>
