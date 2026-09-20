@@ -11,7 +11,7 @@ function Events() {
   return savedFavorites ? JSON.parse(savedFavorites) : [];
 });
 useEffect(() => {
-  fetch("http://localhost:5000/api/events")
+ fetch(`${import.meta.env.VITE_API_URL}/api/events`)
     .then((response) => response.json())
     .then((data) => {
       setEvents(data);

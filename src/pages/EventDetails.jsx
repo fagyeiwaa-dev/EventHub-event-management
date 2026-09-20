@@ -8,17 +8,19 @@ function EventDetails() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-   fetch(`http://localhost:5000/api/events/${id}`)
+const apiUrl = `${import.meta.env.VITE_API_URL}/api/events/${id}`;
+
+fetch(apiUrl)
   .then((response) => {
     if (!response.ok) {
       throw new Error("Event not found");
     }
 
     return response.json();
-  })  
+  })
       .then((data) => {
-        setEvent(data);
-      })
+  setEvent(data);
+ })
       .catch((error) => {
         console.error("Error fetching event:", error);
       })

@@ -1,4 +1,10 @@
 import { Link } from "react-router-dom";
+<Link
+  to="/events"
+  className="w-fit rounded-lg border border-blue-600 px-5 py-2.5 font-semibold text-blue-600 transition hover:bg-blue-600 hover:text-white"
+>
+  View All Events
+</Link>
 
 function Home() {
   return (

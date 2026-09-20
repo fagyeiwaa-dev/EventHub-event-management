@@ -12,6 +12,7 @@ import EventDetails from "./pages/EventDetails";
 import Register from "./pages/Register";
 import Favorites from "./pages/Favorites";
 import MyEvents from "./pages/MyEvents";
+import CreateEvent from "./pages/CreateEvent";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/events/:id/register" element={<Register />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/my-events" element={<MyEvents />} />
+          <Route path="/create-event" element={<CreateEvent />} />
         </Route>
       </Routes>
     </BrowserRouter>

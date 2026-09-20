@@ -8,8 +8,15 @@ function Register() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/events/${id}`)
+    const apiUrl = `${import.meta.env.VITE_API_URL}/api/events/${id}`;
+
+    console.log("Fetching:", apiUrl);
+
+    fetch(apiUrl)
       .then((response) => {
+        console.log("Response status:", response.status);
+        console.log("Response URL:", response.url);
+
         if (!response.ok) {
           throw new Error("Event not found");
         }
@@ -34,36 +41,42 @@ function Register() {
   const price = event ? Number(event.price) : 0;
   const total = price * Number(quantity);
 
-  const handleRegister = () => {
-    if (!name || !email) {
-      alert("Please fill in your name and email.");
-      return;
-    }
+  const handleRegister = async () => {
+  if (!name || !email) {
+    alert("Please fill in your name and email.");
+    return;
+  }
 
-    if (!email.includes("@")) {
-      alert("Please enter a valid email address.");
-      return;
-    }
+  if (!email.includes("@")) {
+    alert("Please enter a valid email address.");
+    return;
+  }
 
-    const registration = {
-      id: Date.now(),
-      eventId: event.id,
-      eventTitle: event.title,
-      date: event.date,
-      location: event.location,
-      quantity: Number(quantity),
-      total,
-      name,
-      email,
-    };
-
-    const savedRegistrations =
-      JSON.parse(localStorage.getItem("registrations")) || [];
-
-    localStorage.setItem(
-      "registrations",
-      JSON.stringify([...savedRegistrations, registration])
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/registrations`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event_id: event.id,
+          name,
+          email,
+          quantity: Number(quantity),
+          total,
+        }),
+      }
     );
+
+    if (!response.ok) {
+      throw new Error("Registration failed");
+    }
+
+    const registration = await response.json();
+
+    console.log("Registration saved:", registration);
 
     navigate("/my-events", {
       state: {
@@ -71,7 +84,11 @@ function Register() {
           "Registration successful! Your event has been added to My Events.",
       },
     });
-  };
+  } catch (error) {
+    console.error("Error registering for event:", error);
+    alert("Registration failed. Please try again.");
+  }
+};
 
 if (loading) {
   return (
@@ -156,5 +173,4 @@ if (loading) {
     </div>
   );
 }
-
 export default Register;

@@ -1,17 +1,28 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 function MyEvents() {
     const location = useLocation();
     const message = location.state?.message;  
-    const [registrations] = useState(() => {
-    const savedRegistrations = localStorage.getItem("registrations");
+   const [registrations, setRegistrations] = useState([]);
 
-  return savedRegistrations
-    ? JSON.parse(savedRegistrations)
-    : [];
-});
+useEffect(() => {
+  fetch(`${import.meta.env.VITE_API_URL}/api/registrations`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch registrations");
+      }
+
+      return response.json();
+    })
+    .then((data) => {
+      setRegistrations(data);
+    })
+    .catch((error) => {
+      console.error("Error fetching registrations:", error);
+    });
+}, []);
   return (
     <div className="mx-auto max-w-5xl px-6 py-10">
       <h1 className="text-3xl font-bold text-gray-900">
@@ -41,13 +52,13 @@ function MyEvents() {
     </div>
   ) : (
     <div className="space-y-4">
-      {registrations.map((registration, index) => (
+      {registrations.map((registration) => (
         <div
          key={registration.id}
           className="rounded-lg border border-gray-200 p-5 shadow-sm"
         >
           <h2 className="text-xl font-semibold text-gray-900">
-            {registration.eventTitle}
+           {registration.event_title}
           </h2>
 
           <p className="mt-2 text-gray-600">
@@ -62,7 +73,7 @@ function MyEvents() {
             Total: GH₵{registration.total}
           </p>
           <Link
-  to={`/events/${registration.eventId}`}
+  to={`/events/${registration.event_id}`}
   className="mt-4 inline-block rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
 >
   View Event
