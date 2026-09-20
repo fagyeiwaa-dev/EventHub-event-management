@@ -8,10 +8,17 @@ function CreateEvent() {
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  const navigate = useNavigate();
- const handleSubmit = async (event) => {
+
+ const [description, setDescription] = useState("");
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState("");
+
+const navigate = useNavigate();;
+const handleSubmit = async (event) => {
   event.preventDefault();
+
+  setLoading(true);
+  setError("");
 
   try {
     const response = await fetch(
@@ -42,7 +49,10 @@ function CreateEvent() {
     console.log("Event created successfully:", createdEvent);
     navigate("/events");
   } catch (error) {
+    setError("Failed to create event");
     console.error("Error creating event:", error);
+  } finally {
+    setLoading(false);
   }
 };
   return (
@@ -56,6 +66,11 @@ function CreateEvent() {
       </p>
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+        {error && (
+  <p className="rounded-lg bg-red-50 px-4 py-3 text-red-600">
+    {error}
+  </p>
+)}
         <div>
           <label className="mb-2 block font-medium text-gray-700">
             Event Title
@@ -159,12 +174,13 @@ function CreateEvent() {
           />
         </div>
 
-        <button
-          type="submit"
-          className="w-full rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
-        >
-          Create Event
-        </button>
+       <button
+  type="submit"
+  disabled={loading}
+  className="w-full rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+>
+  {loading ? "Creating Event..." : "Create Event"}
+</button>
       </form>
     </div>
   );
