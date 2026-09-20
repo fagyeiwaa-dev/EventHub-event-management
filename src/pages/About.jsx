@@ -1,125 +1,137 @@
 function About() {
   return (
-    <div>
-      {/* Page Hero */}
-      <section className="bg-blue-600 px-6 py-20 text-center text-white">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-200">
-            About EventHub
-          </p>
+    <div className="min-h-screen bg-[#FFF8E7]">
+      {/* Hero */}
+      <section className="bg-[#7F1D3A] px-6 py-20 text-center text-white">
+        <p className="font-semibold uppercase tracking-wider text-[#F5D9C8]">
+          About EventHub
+        </p>
 
-          <h1 className="mt-3 text-4xl font-bold md:text-5xl">
-            Bringing People and Experiences Together
-          </h1>
+        <h1 className="mt-4 text-4xl font-bold md:text-5xl">
+          Connecting People Through Events
+        </h1>
 
-          <p className="mt-6 text-lg text-blue-100">
-            EventHub is an event management and ticketing platform designed
-            to make discovering, creating, and managing events easier.
-          </p>
-        </div>
+        <p className="mx-auto mt-5 max-w-2xl leading-7 text-[#FCEFE6]">
+          EventHub makes it easier to discover exciting events,
+          connect with people, and create memorable experiences.
+        </p>
       </section>
 
-      {/* Our Story */}
-      <section className="bg-white px-6 py-20">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
+      {/* About */}
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <div className="grid gap-10 md:grid-cols-2 md:items-center">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
-              Our Story
+            <p className="font-semibold uppercase tracking-wider text-[#7F1D3A]">
+              Who We Are
             </p>
 
-            <h2 className="mt-3 text-3xl font-bold text-gray-900">
-              Events Should Be Easy to Discover and Manage
+            <h2 className="mt-3 text-3xl font-bold text-[#5C1329]">
+              Your Event Discovery Platform
             </h2>
 
-            <p className="mt-6 leading-relaxed text-gray-600">
-              Finding exciting events and managing event registrations can
-              sometimes be difficult. EventHub aims to bring everything into
-              one platform where users can discover events, register for
-              experiences, and keep track of upcoming activities.
+            <p className="mt-5 leading-8 text-gray-600">
+              EventHub is an event management platform designed to
+              help people discover and participate in events that
+              interest them.
             </p>
 
-            <p className="mt-4 leading-relaxed text-gray-600">
-              Event organizers can also use EventHub to create events,
-              manage attendees, and monitor registrations more easily.
-            </p>
-          </div>
-
-          <div className="flex min-h-80 items-center justify-center rounded-2xl bg-blue-100 text-8xl">
-            🎉
-          </div>
-        </div>
-      </section>
-
-      {/* Mission and Vision */}
-      <section className="bg-gray-50 px-6 py-20">
-        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
-          <div className="rounded-2xl bg-white p-8 shadow-sm">
-            <div className="text-4xl">🎯</div>
-
-            <h2 className="mt-5 text-2xl font-bold text-gray-900">
-              Our Mission
-            </h2>
-
-            <p className="mt-4 leading-relaxed text-gray-600">
-              To make discovering, attending, and managing events simple,
-              convenient, and accessible for everyone.
+            <p className="mt-4 leading-8 text-gray-600">
+              From technology conferences and business networking
+              events to music festivals and educational programs,
+              EventHub brings different experiences together in one
+              place.
             </p>
           </div>
 
           <div className="rounded-2xl bg-white p-8 shadow-sm">
-            <div className="text-4xl">🚀</div>
+            <div className="rounded-xl bg-[#FCEFE6] p-8 text-center">
+              <div className="text-5xl">🎟️</div>
 
-            <h2 className="mt-5 text-2xl font-bold text-gray-900">
-              Our Vision
-            </h2>
+              <h3 className="mt-4 text-2xl font-bold text-[#5C1329]">
+                Discover. Connect. Experience.
+              </h3>
 
-            <p className="mt-4 leading-relaxed text-gray-600">
-              To become a trusted digital platform that connects people to
-              meaningful events and helps organizers create better
-              experiences.
-            </p>
+              <p className="mt-3 leading-7 text-gray-600">
+                Find something exciting and make your next event
+                experience memorable.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Who We Serve */}
-      <section className="bg-white px-6 py-20">
-        <div className="mx-auto max-w-7xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
-            Who We Serve
+      {/* What We Offer */}
+      <section className="bg-white px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center">
+            <p className="font-semibold uppercase tracking-wider text-[#7F1D3A]">
+              What We Offer
+            </p>
+
+            <h2 className="mt-3 text-3xl font-bold text-[#5C1329]">
+              Everything You Need for Your Next Event
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="rounded-2xl bg-[#FFF8E7] p-7">
+              <div className="text-4xl">🔎</div>
+
+              <h3 className="mt-4 text-xl font-bold text-[#5C1329]">
+                Discover Events
+              </h3>
+
+              <p className="mt-3 leading-7 text-gray-600">
+                Search and explore events based on your interests
+                and preferred categories.
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-[#FFF8E7] p-7">
+              <div className="text-4xl">❤️</div>
+
+              <h3 className="mt-4 text-xl font-bold text-[#5C1329]">
+                Save Favorites
+              </h3>
+
+              <p className="mt-3 leading-7 text-gray-600">
+                Keep your favorite events in one place so you can
+                easily find them later.
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-[#FFF8E7] p-7">
+              <div className="text-4xl">🎫</div>
+
+              <h3 className="mt-4 text-xl font-bold text-[#5C1329]">
+                Register Easily
+              </h3>
+
+              <p className="mt-3 leading-7 text-gray-600">
+                Register for events and keep track of your
+                registrations through My Events.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission */}
+      <section className="px-6 py-16">
+        <div className="mx-auto max-w-4xl rounded-2xl bg-[#7F1D3A] px-8 py-12 text-center text-white shadow-lg">
+          <p className="font-semibold uppercase tracking-wider text-[#F5D9C8]">
+            Our Mission
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold text-gray-900 md:text-4xl">
-            Built for Event Attendees and Organizers
+          <h2 className="mt-3 text-3xl font-bold">
+            Making Event Discovery Simple
           </h2>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-gray-200 p-8 text-left">
-              <div className="text-4xl">👤</div>
-
-              <h3 className="mt-5 text-2xl font-bold text-gray-900">
-                Event Attendees
-              </h3>
-
-              <p className="mt-4 text-gray-600">
-                Discover interesting events, register for experiences,
-                purchase tickets, save favourites, and receive reminders.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-gray-200 p-8 text-left">
-              <div className="text-4xl">🧑‍💼</div>
-
-              <h3 className="mt-5 text-2xl font-bold text-gray-900">
-                Event Organizers
-              </h3>
-
-              <p className="mt-4 text-gray-600">
-                Create events, manage event information, track registrations,
-                and organize attendee details from one platform.
-              </p>
-            </div>
-          </div>
+          <p className="mx-auto mt-5 max-w-2xl leading-8 text-[#FCEFE6]">
+            Our goal is to create a simple and enjoyable platform
+            where people can discover events, connect with others,
+            and take part in experiences that matter to them.
+          </p>
         </div>
       </section>
     </div>

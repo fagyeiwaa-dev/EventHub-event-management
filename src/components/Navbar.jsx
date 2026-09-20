@@ -23,14 +23,14 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-[#FFF8E7] shadow-md">
       {/* Main Navbar */}
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
         {/* Logo */}
         <Link
           to="/"
-          className="text-2xl font-bold text-blue-600"
+          className="text-2xl font-bold text-[#7F1D3A]"
         >
           EventHub
         </Link>
@@ -40,63 +40,64 @@ function Navbar() {
 
           <Link
             to="/"
-            className="text-gray-700 hover:text-blue-600"
+            className="text-gray-700 transition hover:text-[#7F1D3A]"
           >
             Home
           </Link>
 
           <Link
             to="/about"
-            className="text-gray-700 hover:text-blue-600"
+            className="text-gray-700 transition hover:text-[#7F1D3A]"
           >
             About
           </Link>
 
           <Link
             to="/contact"
-            className="text-gray-700 hover:text-blue-600"
+            className="text-gray-700 transition hover:text-[#7F1D3A]"
           >
             Contact
           </Link>
 
           <Link
             to="/favorites"
-            className="text-gray-700 hover:text-blue-600"
+            className="text-gray-700 transition hover:text-[#7F1D3A]"
           >
             Favorites
           </Link>
 
           <Link
             to="/my-events"
-            className="text-gray-700 hover:text-blue-600"
+            className="text-gray-700 transition hover:text-[#7F1D3A]"
           >
             My Events
           </Link>
 
-          {/* Desktop Authentication */}
+          {/* Logged Out */}
           {!isLoggedIn && (
             <>
               <Link
                 to="/login"
-                className="text-gray-700 hover:text-blue-600"
+                className="text-gray-700 transition hover:text-[#7F1D3A]"
               >
                 Login
               </Link>
 
               <Link
                 to="/signup"
-                className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                className="rounded-lg bg-[#7F1D3A] px-4 py-2 text-white transition hover:bg-[#5C1329]"
               >
                 Sign Up
               </Link>
             </>
           )}
 
+          {/* Logged In */}
           {isLoggedIn && (
             <button
               type="button"
               onClick={handleLogout}
-              className="rounded-lg bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+              className="rounded-lg bg-[#7F1D3A] px-4 py-2 text-white transition hover:bg-[#5C1329]"
             >
               Logout
             </button>
@@ -107,7 +108,7 @@ function Navbar() {
         <button
           type="button"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="rounded-lg p-2 text-gray-700 hover:bg-gray-100 md:hidden"
+          className="rounded-lg p-2 text-[#7F1D3A] hover:bg-[#F5E6D3] md:hidden"
           aria-label="Toggle menu"
         >
           ☰
@@ -116,13 +117,13 @@ function Navbar() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="border-t bg-white px-6 py-4 md:hidden">
+        <div className="border-t border-[#E8D5C4] bg-[#FFF8E7] px-6 py-4 md:hidden">
           <div className="flex flex-col gap-4">
 
             <Link
               to="/"
               onClick={() => setIsMenuOpen(false)}
-              className="text-gray-700 hover:text-blue-600"
+              className="text-gray-700 transition hover:text-[#7F1D3A]"
             >
               Home
             </Link>
@@ -130,7 +131,7 @@ function Navbar() {
             <Link
               to="/about"
               onClick={() => setIsMenuOpen(false)}
-              className="text-gray-700 hover:text-blue-600"
+              className="text-gray-700 transition hover:text-[#7F1D3A]"
             >
               About
             </Link>
@@ -138,7 +139,7 @@ function Navbar() {
             <Link
               to="/contact"
               onClick={() => setIsMenuOpen(false)}
-              className="text-gray-700 hover:text-blue-600"
+              className="text-gray-700 transition hover:text-[#7F1D3A]"
             >
               Contact
             </Link>
@@ -146,7 +147,7 @@ function Navbar() {
             <Link
               to="/favorites"
               onClick={() => setIsMenuOpen(false)}
-              className="text-gray-700 hover:text-blue-600"
+              className="text-gray-700 transition hover:text-[#7F1D3A]"
             >
               Favorites
             </Link>
@@ -154,18 +155,18 @@ function Navbar() {
             <Link
               to="/my-events"
               onClick={() => setIsMenuOpen(false)}
-              className="text-gray-700 hover:text-blue-600"
+              className="text-gray-700 transition hover:text-[#7F1D3A]"
             >
               My Events
             </Link>
 
-            {/* Mobile Authentication */}
+            {/* Mobile Logged Out */}
             {!isLoggedIn && (
               <>
                 <Link
                   to="/login"
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-gray-700 hover:text-blue-600"
+                  className="text-gray-700 transition hover:text-[#7F1D3A]"
                 >
                   Login
                 </Link>
@@ -173,23 +174,23 @@ function Navbar() {
                 <Link
                   to="/signup"
                   onClick={() => setIsMenuOpen(false)}
-                  className="rounded-lg bg-blue-600 px-4 py-2 text-center text-white hover:bg-blue-700"
+                  className="rounded-lg bg-[#7F1D3A] px-4 py-2 text-center text-white transition hover:bg-[#5C1329]"
                 >
                   Sign Up
                 </Link>
               </>
             )}
 
+            {/* Mobile Logged In */}
             {isLoggedIn && (
               <button
                 type="button"
                 onClick={handleLogout}
-                className="rounded-lg bg-red-500 px-4 py-2 text-center text-white hover:bg-red-600"
+                className="rounded-lg bg-[#7F1D3A] px-4 py-2 text-center text-white transition hover:bg-[#5C1329]"
               >
                 Logout
               </button>
             )}
-
           </div>
         </div>
       )}

@@ -4,9 +4,9 @@ function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-blue-600 px-6 py-24 text-white">
+      <section className="bg-[#7F1D3A] px-6 py-24 text-white">
         <div className="mx-auto max-w-7xl text-center">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-blue-200">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#F5D9C8]">
             Welcome to EventHub
           </p>
 
@@ -16,7 +16,7 @@ function Home() {
             Create Experiences.
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-blue-100">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-[#FCEFE6]">
             Find exciting events, connect with people, register for
             experiences, and create unforgettable moments with EventHub.
           </p>
@@ -24,14 +24,14 @@ function Home() {
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               to="/events"
-              className="rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition hover:bg-gray-100"
+              className="rounded-lg bg-[#FFF8E7] px-6 py-3 font-semibold text-[#7F1D3A] transition hover:bg-[#F5E6D3]"
             >
               Explore Events
             </Link>
 
             <Link
               to="/create-event"
-              className="rounded-lg border border-white px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+              className="rounded-lg border border-[#FFF8E7] px-6 py-3 font-semibold text-white transition hover:bg-[#5C1329]"
             >
               Create an Event
             </Link>
@@ -40,10 +40,10 @@ function Home() {
       </section>
 
       {/* Why Choose EventHub */}
-      <section className="bg-gray-50 px-6 py-20">
+      <section className="bg-[#FFF8E7] px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[#7F1D3A]">
               Why EventHub?
             </p>
 
@@ -61,7 +61,7 @@ function Home() {
           {/* Feature Cards */}
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-2xl">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F5D9C8] text-2xl">
                 🎟️
               </div>
 
@@ -76,7 +76,7 @@ function Home() {
             </div>
 
             <div className="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-2xl">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F5D9C8] text-2xl">
                 🔎
               </div>
 
@@ -91,7 +91,7 @@ function Home() {
             </div>
 
             <div className="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-2xl">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F5D9C8] text-2xl">
                 ❤️
               </div>
 
@@ -106,7 +106,7 @@ function Home() {
             </div>
 
             <div className="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-2xl">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F5D9C8] text-2xl">
                 🔔
               </div>
 
@@ -128,7 +128,7 @@ function Home() {
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
+              <p className="text-sm font-semibold uppercase tracking-widest text-[#7F1D3A]">
                 Upcoming Events
               </p>
 
@@ -143,7 +143,7 @@ function Home() {
 
             <Link
               to="/events"
-              className="w-fit rounded-lg border border-blue-600 px-5 py-2.5 font-semibold text-blue-600 transition hover:bg-blue-600 hover:text-white"
+              className="w-fit rounded-lg border border-[#7F1D3A] px-5 py-2.5 font-semibold text-[#7F1D3A] transition hover:bg-[#7F1D3A] hover:text-white"
             >
               View All Events
             </Link>
@@ -160,7 +160,7 @@ function Home() {
               />
 
               <div className="p-6">
-                <p className="text-sm font-semibold text-blue-600">
+                <p className="text-sm font-semibold text-[#7F1D3A]">
                   Technology
                 </p>
 
@@ -180,7 +180,7 @@ function Home() {
 
                 <Link
                   to="/events/1"
-                  className="mt-6 block w-full rounded-lg bg-blue-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-blue-700"
+                  className="mt-6 block w-full rounded-lg bg-[#7F1D3A] px-4 py-3 text-center font-semibold text-white transition hover:bg-[#5C1329]"
                 >
                   View Event
                 </Link>
@@ -196,7 +196,7 @@ function Home() {
               />
 
               <div className="p-6">
-                <p className="text-sm font-semibold text-purple-600">
+                <p className="text-sm font-semibold text-[#7F1D3A]">
                   Music
                 </p>
 
@@ -216,7 +216,7 @@ function Home() {
 
                 <Link
                   to="/events/2"
-                  className="mt-6 block w-full rounded-lg bg-blue-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-blue-700"
+                  className="mt-6 block w-full rounded-lg bg-[#7F1D3A] px-4 py-3 text-center font-semibold text-white transition hover:bg-[#5C1329]"
                 >
                   View Event
                 </Link>
@@ -232,7 +232,7 @@ function Home() {
               />
 
               <div className="p-6">
-                <p className="text-sm font-semibold text-green-600">
+                <p className="text-sm font-semibold text-[#7F1D3A]">
                   Business
                 </p>
 
@@ -252,7 +252,7 @@ function Home() {
 
                 <Link
                   to="/events/3"
-                  className="mt-6 block w-full rounded-lg bg-blue-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-blue-700"
+                  className="mt-6 block w-full rounded-lg bg-[#7F1D3A] px-4 py-3 text-center font-semibold text-white transition hover:bg-[#5C1329]"
                 >
                   View Event
                 </Link>
@@ -263,9 +263,9 @@ function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-blue-600 px-6 py-20 text-white">
+      <section className="bg-[#7F1D3A] px-6 py-20 text-white">
         <div className="mx-auto max-w-5xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-200">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#F5D9C8]">
             Your Next Experience Starts Here
           </p>
 
@@ -273,7 +273,7 @@ function Home() {
             Ready to Experience Something Amazing?
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-blue-100">
+          <p className="mx-auto mt-5 max-w-2xl text-lg text-[#FCEFE6]">
             Discover exciting events, connect with people, and create
             unforgettable experiences with EventHub.
           </p>
@@ -281,14 +281,14 @@ function Home() {
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               to="/events"
-              className="rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition hover:bg-gray-100"
+              className="rounded-lg bg-[#FFF8E7] px-6 py-3 font-semibold text-[#7F1D3A] transition hover:bg-[#F5E6D3]"
             >
               Explore Events
             </Link>
 
             <Link
               to="/create-event"
-              className="rounded-lg border border-white px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+              className="rounded-lg border border-[#FFF8E7] px-6 py-3 font-semibold text-white transition hover:bg-[#5C1329]"
             >
               Become an Organizer
             </Link>

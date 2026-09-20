@@ -1,25 +1,25 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function Register() {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [event, setEvent] = useState(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const apiUrl = `${import.meta.env.VITE_API_URL}/api/events/${id}`;
-
-    console.log("Fetching:", apiUrl);
-
-    fetch(apiUrl)
+    fetch(`${import.meta.env.VITE_API_URL}/api/events/${id}`)
       .then((response) => {
-        console.log("Response status:", response.status);
-        console.log("Response URL:", response.url);
-
         if (!response.ok) {
           throw new Error("Event not found");
         }
+
         return response.json();
       })
       .then((data) => {
@@ -27,150 +27,228 @@ function Register() {
       })
       .catch((error) => {
         console.error("Error fetching event:", error);
+        setError("Unable to load this event.");
       })
       .finally(() => {
         setLoading(false);
       });
   }, [id]);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [quantity, setQuantity] = useState(1);
-  
+  const total = event ? Number(event.price) * Number(quantity) : 0;
 
-  const price = event ? Number(event.price) : 0;
-  const total = price * Number(quantity);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleRegister = async () => {
-  if (!name || !email) {
-    alert("Please fill in your name and email.");
-    return;
-  }
-
-  if (!email.includes("@")) {
-    alert("Please enter a valid email address.");
-    return;
-  }
-
-  try {
-    const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/registrations`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          event_id: event.id,
-          name,
-          email,
-          quantity: Number(quantity),
-          total,
-        }),
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Registration failed");
+    if (!name || !email) {
+      setError("Please enter your name and email.");
+      return;
     }
 
-    const registration = await response.json();
+    setSubmitting(true);
+    setError("");
 
-    console.log("Registration saved:", registration);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/registrations`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            event_id: event.id,
+            name,
+            email,
+            quantity: Number(quantity),
+            total,
+          }),
+        }
+      );
 
-    navigate("/my-events", {
-      state: {
-        message:
-          "Registration successful! Your event has been added to My Events.",
-      },
-    });
-  } catch (error) {
-    console.error("Error registering for event:", error);
-    alert("Registration failed. Please try again.");
-  }
-};
+      if (!response.ok) {
+        throw new Error("Registration failed");
+      }
 
-if (loading) {
-  return (
-    <div className="mx-auto max-w-2xl px-6 py-10 text-center">
-      <p className="text-gray-600">Loading event...</p>
-    </div>
-  );
-}
-  if (!event) {
+      navigate("/my-events", {
+        state: {
+          message:
+            "Registration successful! Your event has been added to My Events.",
+        },
+      });
+    } catch (error) {
+      console.error("Error registering for event:", error);
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (loading) {
     return (
-      <div className="mx-auto max-w-2xl px-6 py-10 text-center">
-        <h1 className="text-3xl font-bold text-gray-900">Event Not Found</h1>
-
-        <p className="mt-2 text-gray-600">We couldn't find this event.</p>
+      <div className="min-h-screen bg-[#FFF8E7] px-6 py-16 text-center">
+        <p className="text-[#7F1D3A]">Loading event...</p>
       </div>
     );
   }
+
+  if (!event) {
+    return (
+      <div className="min-h-screen bg-[#FFF8E7] px-6 py-16 text-center">
+        <h1 className="text-3xl font-bold text-[#5C1329]">
+          Event Not Found
+        </h1>
+
+        <p className="mt-3 text-gray-600">
+          Sorry, we couldn't find this event.
+        </p>
+
+        <Link
+          to="/events"
+          className="mt-6 inline-block rounded-lg bg-[#7F1D3A] px-6 py-3 font-semibold text-white hover:bg-[#5C1329]"
+        >
+          Back to Events
+        </Link>
+      </div>
+    );
+  }
+
   return (
-    <div className="mx-auto max-w-2xl px-6 py-10">
-      <h1 className="text-3xl font-bold text-gray-900">Register for Event</h1>
+    <div className="min-h-screen bg-[#FFF8E7] px-6 py-12">
+      <div className="mx-auto max-w-5xl">
+        <Link
+          to={`/events/${event.id}`}
+          className="mb-6 inline-block font-medium text-[#7F1D3A] hover:underline"
+        >
+          ← Back to Event
+        </Link>
 
-      <p className="mt-2 text-gray-600">You are registering for: {event.title}</p>
+        <div className="grid overflow-hidden rounded-2xl bg-white shadow-lg md:grid-cols-2">
+          <div className="bg-[#7F1D3A] p-8 text-white md:p-10">
+            <span className="inline-block rounded-full bg-[#FCEFE6] px-4 py-2 text-sm font-semibold text-[#7F1D3A]">
+              {event.category}
+            </span>
 
-      <p className="mt-2 font-medium text-blue-600">Ticket Price: {event.price}</p>
+            <h1 className="mt-6 text-3xl font-bold md:text-4xl">
+              {event.title}
+            </h1>
 
-      <div className="mt-6 space-y-4">
-        <div>
-          <label className="mb-2 block font-medium text-gray-700">
-            Full Name
-          </label>
+            <div className="mt-8 space-y-4 text-[#FCEFE6]">
+              <p>📅 {event.date}</p>
+              <p>📍 {event.location}</p>
+              <p>
+                🎟️ Ticket Price:{" "}
+                <span className="font-bold text-white">
+                  GH₵{event.price}
+                </span>
+              </p>
+            </div>
 
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Howard Schultz"
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+            <div className="mt-10 rounded-xl bg-[#5C1329] p-5">
+              <p className="text-sm text-[#FCEFE6]">
+                Your total
+              </p>
+
+              <p className="mt-1 text-3xl font-bold">
+                GH₵{total.toFixed(2)}
+              </p>
+            </div>
+          </div>
+
+          <div className="p-8 md:p-10">
+            <h2 className="text-2xl font-bold text-[#5C1329]">
+              Register for this Event
+            </h2>
+
+            <p className="mt-2 text-gray-600">
+              Enter your details to reserve your ticket.
+            </p>
+
+            {error && (
+              <p className="mt-5 rounded-lg bg-red-50 px-4 py-3 text-red-600">
+                {error}
+              </p>
+            )}
+
+            <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  Full Name
+                </label>
+
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="Enter your full name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full rounded-lg border border-[#E8D5C4] px-4 py-3 outline-none transition focus:border-[#7F1D3A] focus:ring-2 focus:ring-[#F5D9C8]"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="email"
+                  className="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  Email Address
+                </label>
+
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full rounded-lg border border-[#E8D5C4] px-4 py-3 outline-none transition focus:border-[#7F1D3A] focus:ring-2 focus:ring-[#F5D9C8]"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="quantity"
+                  className="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  Number of Tickets
+                </label>
+
+                <input
+                  id="quantity"
+                  type="number"
+                  min="1"
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                  className="w-full rounded-lg border border-[#E8D5C4] px-4 py-3 outline-none transition focus:border-[#7F1D3A] focus:ring-2 focus:ring-[#F5D9C8]"
+                />
+              </div>
+
+              <div className="rounded-xl bg-[#FFF8E7] p-5">
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-600">
+                    {quantity} ticket{Number(quantity) !== 1 ? "s" : ""}
+                  </span>
+
+                  <span className="text-xl font-bold text-[#7F1D3A]">
+                    GH₵{total.toFixed(2)}
+                  </span>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full rounded-lg bg-[#7F1D3A] px-6 py-4 font-semibold text-white transition hover:bg-[#5C1329] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {submitting ? "Registering..." : "Confirm Registration"}
+              </button>
+            </form>
+          </div>
         </div>
-
-        <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">
-            Email
-          </label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded border border-gray-300 p-2"
-            placeholder="name@example.com"
-          />
-        </div>
-
-       <div className="mt-4">
-  <label className="mb-2 block font-medium text-gray-700">
-    Number of Tickets
-  </label>
-
-  <input
-    type="number"
-    min="1"
-    value={quantity}
-    onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
-    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-  />
-</div>
-<div className="mt-6 rounded-lg bg-gray-100 p-4">
-  <p className="text-lg font-semibold text-gray-900">
-    Total: GH₵{total}
-  </p>
-</div>
-
-
-    <button
-     type="button"
-     onClick={handleRegister}
-     className="mt-6 w-full rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
->
-       Register for Event
-    </button>
-    </div>
+      </div>
     </div>
   );
 }
+
 export default Register;
