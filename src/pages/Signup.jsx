@@ -10,16 +10,48 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  const handleSignup = (event) => {
-    event.preventDefault();
+ const handleSignup = async (event) => {
+  event.preventDefault();
 
-    if (!name || !email || !password) {
-      alert("Please fill in all fields.");
+  if (!name || !email || !password) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/auth/signup`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.error || "Failed to create account.");
       return;
     }
 
     localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userEmail", data.user.email);
+
+    alert("Account created successfully!");
+
+    navigate("/");
+  } catch (error) {
+    console.error("Signup error:", error);
+    alert("Unable to connect to the server.");
+  }
+};
 
     navigate("/");
   };
@@ -149,6 +181,5 @@ function Signup() {
       </div>
     </div>
   );
-}
 
 export default Signup;

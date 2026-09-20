@@ -27,6 +27,7 @@ function MyEvents() {
   return (
     <div className="min-h-screen bg-[#FFF8E7] px-6 py-12">
       <div className="mx-auto max-w-5xl">
+
         <div className="mb-10 text-center">
           <p className="font-semibold uppercase tracking-wider text-[#7F1D3A]">
             EventHub
@@ -66,58 +67,119 @@ function MyEvents() {
           </div>
         ) : (
           <div className="space-y-6">
+
             {registrations.map((registration) => (
               <div
                 key={registration.id}
-                className="rounded-2xl bg-white p-6 shadow-sm transition hover:shadow-md md:p-8"
+                className="overflow-hidden rounded-2xl bg-white shadow-md"
               >
-                <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <span className="inline-block rounded-full bg-[#FCEFE6] px-3 py-1 text-sm font-semibold text-[#7F1D3A]">
-                      Registered
-                    </span>
 
-                    <h2 className="mt-3 text-2xl font-bold text-[#5C1329]">
-                      {registration.event_title}
-                    </h2>
+                {/* Ticket Header */}
+                <div className="bg-[#7F1D3A] px-6 py-5 text-white">
+                  <p className="text-sm font-semibold uppercase tracking-wider">
+                    EventHub
+                  </p>
 
-                    <div className="mt-4 space-y-2 text-gray-600">
-                      <p>📅 {registration.date}</p>
-                      <p>📍 {registration.location}</p>
-                      <p>🎟️ Tickets: {registration.quantity}</p>
+                  <h2 className="mt-1 text-2xl font-bold">
+                    {registration.event_title}
+                  </h2>
+                </div>
+
+                {/* Ticket Details */}
+                <div className="p-6 md:p-8">
+
+                  <div className="grid gap-6 md:grid-cols-2">
+
+                    <div className="space-y-3 text-gray-600">
+
+                      <p>
+                        <span className="font-semibold text-[#5C1329]">
+                          📅 Date:
+                        </span>{" "}
+                        {registration.date}
+                      </p>
+
+                      <p>
+                        <span className="font-semibold text-[#5C1329]">
+                          📍 Location:
+                        </span>{" "}
+                        {registration.location}
+                      </p>
+
+                      <p>
+                        <span className="font-semibold text-[#5C1329]">
+                          👤 Attendee:
+                        </span>{" "}
+                        {registration.name}
+                      </p>
+
+                      <p>
+                        <span className="font-semibold text-[#5C1329]">
+                          🎟️ Tickets:
+                        </span>{" "}
+                        {registration.quantity}
+                      </p>
+
                     </div>
+
+                    {/* Ticket Number */}
+                    <div className="rounded-xl bg-[#FFF8E7] p-5 text-center">
+
+                      <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">
+                        Ticket Number
+                      </p>
+
+                      <p className="mt-2 text-xl font-bold tracking-wider text-[#7F1D3A]">
+                        {registration.ticket_number}
+                      </p>
+
+                      <div className="mt-5 border-t border-[#E8D5C4] pt-4">
+
+                        <p className="text-sm font-medium text-gray-500">
+                          Total Paid
+                        </p>
+
+                        <p className="mt-1 text-2xl font-bold text-[#7F1D3A]">
+                          GH₵{Number(registration.total).toFixed(2)}
+                        </p>
+
+                      </div>
+
+                    </div>
+
                   </div>
 
-                  <div className="md:text-right">
-                    <p className="text-sm font-medium text-gray-500">
-                      Total Paid
-                    </p>
-
-                    <p className="mt-1 text-2xl font-bold text-[#7F1D3A]">
-                      GH₵{Number(registration.total).toFixed(2)}
-                    </p>
+                  {/* View Event Button */}
+                  <div className="mt-6 flex justify-end">
 
                     <Link
                       to={`/events/${registration.event_id}`}
-                      className="mt-4 inline-block rounded-lg bg-[#7F1D3A] px-5 py-3 font-semibold text-white transition hover:bg-[#5C1329]"
+                      className="rounded-lg bg-[#7F1D3A] px-5 py-3 font-semibold text-white transition hover:bg-[#5C1329]"
                     >
                       View Event
                     </Link>
+
                   </div>
+
                 </div>
+
               </div>
             ))}
+
           </div>
         )}
 
         <div className="mt-10 text-center">
+
           <Link
             to="/events"
             className="font-semibold text-[#7F1D3A] hover:underline"
           >
             ← Browse More Events
           </Link>
+
         </div>
+
       </div>
     </div>
   );

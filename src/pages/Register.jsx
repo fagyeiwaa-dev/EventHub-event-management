@@ -66,15 +66,18 @@ function Register() {
       );
 
       if (!response.ok) {
-        throw new Error("Registration failed");
-      }
+  throw new Error("Registration failed");
+}
 
-      navigate("/my-events", {
-        state: {
-          message:
-            "Registration successful! Your event has been added to My Events.",
-        },
-      });
+const data = await response.json();
+
+navigate("/my-events", {
+  state: {
+    message:
+      "Registration successful! Your event has been added to My Events.",
+    ticketNumber: data.ticket_number,
+  },
+});
     } catch (error) {
       console.error("Error registering for event:", error);
       setError("Something went wrong. Please try again.");
