@@ -9,19 +9,46 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const handleLogin = (event) => {
-    event.preventDefault();
+  const handleLogin = async (event) => {
+  event.preventDefault();
 
-    if (!email || !password) {
-      alert("Please enter your email and password.");
+  if (!email || !password) {
+    alert("Please enter your email and password.");
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/auth/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.error || "Login failed.");
       return;
     }
 
     localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("userEmail", email);
+    localStorage.setItem("user", JSON.stringify(data.user));
+    localStorage.setItem("token", data.token);
 
     navigate("/");
-  };
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("Unable to connect to the server.");
+  }
+};
 
   return (
     <div className="min-h-screen bg-[#FFF8E7] px-6 py-12">

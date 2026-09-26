@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { Navigate } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 
 import Home from "./pages/Home";
+import AdminDashboard from "./pages/AdminDashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import About from "./pages/About";
@@ -20,6 +21,17 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
+        <Route
+  path="/admin"
+  element={
+    localStorage.getItem("user") &&
+    JSON.parse(localStorage.getItem("user")).is_admin ? (
+      <AdminDashboard />
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/about" element={<About />} />
