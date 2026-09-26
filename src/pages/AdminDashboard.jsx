@@ -4,15 +4,21 @@ function AdminDashboard() {
   const [registrations, setRegistrations] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/admin/registrations", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/admin/registrations`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-      .then((response) => response.json())
-      .then((data) => {
-        setRegistrations(data);
-      })
+      .then((response) => {
+  if (!response.ok) {
+    throw new Error("Failed to fetch registrations");
+  }
+
+  return response.json();
+})
+.then((data) => {
+  setRegistrations(data);
+})
       .catch((error) => {
         console.error("Error fetching registrations:", error);
       });
