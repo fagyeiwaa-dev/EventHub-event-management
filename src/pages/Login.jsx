@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 function Login() {
+
   const [showPassword, setShowPassword] = useState(false);
 
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-
+  const location = useLocation();
   const handleLogin = async (event) => {
   event.preventDefault();
 
@@ -43,7 +45,9 @@ function Login() {
     localStorage.setItem("user", JSON.stringify(data.user));
     localStorage.setItem("token", data.token);
 
-    navigate("/");
+    const from = location.state?.from || "/";
+
+navigate(from);
   } catch (error) {
     console.error("Login error:", error);
     alert("Unable to connect to the server.");

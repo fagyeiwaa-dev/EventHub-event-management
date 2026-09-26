@@ -1,8 +1,25 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function EventDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  const handleRegister = () => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  if (!isLoggedIn) {
+    navigate("/login", {
+      state: {
+        from: `/events/${event.id}/register`,
+      },
+    });
+
+    return;
+  }
+
+  navigate(`/events/${event.id}/register`);
+};
 
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,6 +40,7 @@ function EventDetails() {
       })
       .catch((error) => {
         console.error("Error fetching event:", error);
+        navigate("/events");
       })
       .finally(() => {
         setLoading(false);
@@ -135,12 +153,12 @@ function EventDetails() {
                 Secure your spot and be part of this event.
               </p>
 
-              <Link
-                to={`/events/${event.id}/register`}
+              <button
+                onClick={handleRegister}
                 className="mt-6 inline-block w-full rounded-lg bg-[#7F1D3A] px-6 py-4 text-center font-semibold text-white transition hover:bg-[#5C1329] md:w-auto"
               >
                 Register / Buy Ticket
-              </Link>
+              </button>
             </div>
           </div>
         </div>
